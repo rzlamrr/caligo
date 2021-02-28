@@ -27,11 +27,12 @@ WORKDIR /opt/venv
 RUN python3 -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 
-RUN mkdir -p /src
-WORKDIR /src
 
 # Install bot package and dependencies
-COPY . .
+RUN mkdir -p /src
+RUN git clone https://github.com/adekmaulana/caligo -b staging /src
+WORKDIR /src
+#COPY . .
 RUN pip install --upgrade pip
 RUN pip install wheel
 RUN pip install .
